@@ -1,0 +1,229 @@
+body{
+    background-color: #E2E7F1;
+}
+
+#navbar{
+    background-color: #222E50;
+    color: white;
+}
+
+/* small screen */
+@media (max-width: 767px){
+    body{
+        font-size: 11px;
+    }
+
+    /* navbar */
+    #navbar{
+        display: none;
+    }
+
+    #navbar-small{
+        background-color: #222E50;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 50px;
+    }
+
+    #nav-stick{
+        display: flex;
+        width: 100%;
+    }
+
+    #left{
+        width: 33%;
+    }
+
+    #menu-button-small{
+        display: flex;
+        justify-content: flex-end;
+        font-size: 20px;
+        width: 33%;
+        padding-top: 8px;
+        padding-right: 8px;
+    }
+
+    #menu-button-small button{
+        border: none;
+        background: none;
+        color: white;
+    }
+
+    #app-name-small{
+        display: flex;
+        justify-content: center;
+        font-family: 'Pacifico';
+        font-weight: bold;
+        font-size: 20px;
+        width: 33%;
+        padding-top: 15px;
+    }
+
+    #dropdown-small{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+        gap: 30px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .dropdown-option-small a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .dropdown-option-small a:hover{
+        color: lightpink; /* change color */
+    } 
+
+    .dropdown-icon-small{
+        margin-right: 10px;
+    } 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* medium screen */
+@media (min-width: 768px) and (max-width: 991px){
+    body{
+        font-size: 13px;
+    }
+
+    /* navbar */
+    #navbar-small{
+        display: none;
+    }
+
+    #navbar{
+        display: flex;
+        width: 100%;
+        height: 50px;
+    }
+
+    #app-name{
+        display: flex;
+        align-items: center;
+        height: 100%;
+        font-family: 'Pacifico';
+        font-weight: bold;
+        font-size: 23px;
+        width: 30%;
+        margin-left: 2.5%;
+    }
+
+    #dropdown{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 70%;
+        gap: 30px;
+        font-weight: bold;
+        font-size: 14px;
+        margin-right: 3%;;
+    }
+
+    .dropdown-option a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .dropdown-option a:hover{
+        color: lightpink; /* change color */
+    } 
+
+    .dropdown-icon{
+        margin-right: 7px;
+    } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* large screen */
+@media (min-width: 992px){
+    body{
+        font-size: 15px;
+    }
+
+    #index-content{
+        height: 100%;
+    }
+
+    #my-container{
+        height: 100vh;
+    }
+
+    /* navbar */
+    #navbar-small{
+        display: none;
+    }
+
+    #navbar{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 0px;
+    }
+
+    #app-name{
+        font-family: 'Pacifico';
+        font-weight: bold;
+        font-size: 34px;
+        margin-bottom: 20px;
+        padding-top: 30px;
+        padding-left: 13%;
+    }
+
+    #dropdown{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        font-weight: bold;
+        font-size: 16px;
+        padding-left: 13%;
+    }
+
+    .dropdown-option{
+        width: 100%;
+    }
+
+    .dropdown-option a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .dropdown-option a:hover{
+        color: lightpink; /* change color */
+    }
+
+    .dropdown-icon{
+        margin-right: 15px;
+    }
+
+}
