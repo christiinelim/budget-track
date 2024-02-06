@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- bootstrap icons css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="styles.css" rel="stylesheet">
+
+    <title>BudgetTrack</title>
+</head>
+<body>
+
+    <div id="my-container">
+        <div id="index-content" class="row">
+            <!-- navbar -->
+            <nav id="navbar-small" class="col-12">
+                <div id="nav-stick">
+                    <div id="left"></div>
+                    <div id="app-name-small">BudgetTrack</div>
+                    <div id="menu-button-small"><button id="menu-button-click"><i class="bi bi-list"></i></button></div>
+                </div>
+                <div id="dropdown-small">
+                    <div class="dropdown-option-small"><a href="index.html"><i class="bi bi-bar-chart-steps dropdown-icon-small"></i>DASHBOARD</a></div>
+                    <div class="dropdown-option-small"><a href="budget.html"><i class="bi bi-cash-stack dropdown-icon-small"></i>TRANSACTION</a></div>
+                    <div class="dropdown-option-small"><button id="add-transaction-button-nav-small"><a href="#transaction-form-container"><i class="bi bi-currency-exchange dropdown-icon-small"></i>ADD TRANSACTION</a></button></div>
+                </div>
+            </nav>
+
+            <nav id="navbar" class="col-md-12 col-lg-3">
+                <div id="app-name">
+                    BudgetTrack
+                </div>
+                
+                <div id="dropdown">
+                    <div class="dropdown-option"><a href="index.html"><i class="bi bi-bar-chart-steps dropdown-icon"></i>DASHBOARD</a></div>
+                    <div class="dropdown-option"><a href="budget.html"><i class="bi bi-cash-stack dropdown-icon"></i>TRANSACTIONS</a></div>
+                    <div class="dropdown-option"><button id="add-transaction-button-nav"><a href="#transaction-form-container"><i class="bi bi-currency-exchange dropdown-icon"></i>ADD TRANSACTION</a></button></div>
+                </div>
+            </nav>
+
+            <!-- render list content -->
+            <div id="transaction" class="col-12 col-lg-9">
+                <div id="transaction-bg">
+                    <div id="add-transaction">
+                        <div id="add-transaction-box">
+                            <button id="add-transaction-button"><a href="#transaction-form-container"><i id="add-transaction-icon" class="bi bi-currency-exchange"></i>Add Transaction</a></button>
+                        </div>
+                    </div>
+                    <div id="transaction-list">
+                        <!-- transaction header -->
+                        <div id="transaction-list-header" class="row">
+                            
+                        </div>
+
+                        <!-- to render list of transactions -->
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- alert for deleting -->
+            <div id="delete-warning-container" class="col-12 col-lg-9">
+                <div id="delete-warning" class="alert alert-danger" role="alert">
+                    <div id="warning-header">WARNING</div>
+                    <div id="delete-paragraph">Are you sure you want to delete?</div>
+                    <div id="warning-buttons">
+                        <button id="delete-yes">Yes</button>
+                        <button id="delete-no">No</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- transaction list -->
+            <div id="transaction-form-container" class="col-12 col-lg-9">
+                <form id="transaction-form">
+                    <div id="data-id"></div>
+                    <div id="add-transaction-header">ADD NEW TRANSACTION</div> 
+                    <div>
+                        <div class="my-form-label">TYPE:</div>
+                        <select id="type-select" class="form-select form-select-sm" required>
+                            <option value="Expenditure">Expenditure</option>
+                            <option value="Income">Income</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <div class="my-form-label">CATEGORY:</div>
+                        <select id="category-select" class="form-select form-select-sm" required>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Food">Food</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Bill">Bill</option>
+                            <option value="Salary">Salary</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <div class="my-form-label">DATE:</div>
+                        <input type="date" id="date-form" class="form-control" required/>
+                    </div>
+
+                    <div>
+                        <div class="my-form-label">DESCRIPTION:</div>
+                        <textarea id="description-form" class="form-control" required></textarea>
+                    </div>
+
+                    <div>
+                        <div class="my-form-label">AMOUNT:</div>
+                        <input type="text" id="amount-form" class="form-control" required/>
+                    </div>
+                    <div id="submit">
+                        <button type="button" id="cancel-button">Cancel</button>
+                        <button type="button" id="update-button">Update</button>
+                        <button type="button" id="submit-button">Submit</button>
+                    </div>
+                    <div id="form-validation">
+                        <div id="validation-content" class="alert alert-warning" role="alert">
+                            <div id="validation-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
+                            <div id="validation-text">Please fill up all the fields</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js" integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

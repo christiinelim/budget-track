@@ -10,7 +10,7 @@ body{
 /* small screen */
 @media (max-width: 767px){
     body{
-        font-size: 11px;
+        font-size: 10px;
     }
 
     /* navbar */
@@ -25,6 +25,9 @@ body{
         flex-direction: column;
         align-items: center;
         height: 50px;
+        position: sticky;
+        top: 0px;
+        left: 0px;
     }
 
     #nav-stick{
@@ -84,6 +87,309 @@ body{
         margin-right: 10px;
     } 
 
+    #add-transaction-button-nav-small{
+        background: none;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 0px;
+    }
+
+    #add-transaction-button-nav-small:hover{
+        color: pink;
+    }
+
+
+    /* dashboard */
+
+    /* delete warning */
+    #delete-warning-container{
+        position: fixed;
+        top: 25%;
+        display: flex;
+        justify-content: center;
+        font-size: 12px;
+    }
+
+    #delete-warning{
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+        height: 150px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #warning-header{
+        color: #FF5757;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    #delete-paragraph{
+        text-align: center;
+    }
+
+    #warning-buttons{
+        margin-top: 25px;
+    }
+
+    #delete-yes{
+        color: #0f5132;
+        background-color: #d1e7dd;
+        border: 1px solid #badbcc;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+        border-radius: 5px;
+    }
+
+    #delete-no{
+        color: #664d03;
+        background-color: #fff3cd;
+        border: 1px solid #ffecb5;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+        border-radius: 5px;
+    }
+
+    #delete-yes:hover,
+    #delete-no:hover{
+        font-weight: bold;
+    }
+
+
+    /* add transaction page */
+    #transaction{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #transaction-bg{
+        background-color: #F9FAFB;
+        border-radius: 15px;
+        width: 93%;
+        height: 80vh;
+        margin-top: 35px;
+        overflow: hidden;
+    }
+
+    #add-transaction{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+        margin-right: 20px;
+        margin-bottom: 15px;
+    }
+
+    #add-transaction-box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #222E50;
+        height: 30px;
+        width: 120px;
+        border-radius: 8px;
+    }
+
+    #add-transaction-box:hover{
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    }
+
+    #add-transaction-button{
+        border: none;
+        background: none;
+        font-weight: bold;
+    }
+
+    #add-transaction-button a{
+        text-decoration: none;
+        color: white;
+    }
+
+    #add-transaction-button a:hover{
+        color: pink;
+    }
+
+    #add-transaction-icon{
+        margin-right: 5px;
+    }
+
+    #transaction-list{
+        max-height: 80%;
+        overflow: auto;
+    }
+
+    #transaction-list::-webkit-scrollbar {
+        width: 0.5em;
+    }
+    
+    #transaction-list::-webkit-scrollbar-thumb {
+        background-color: #c1c1c1;
+        border-radius: 25px;
+    }
+
+    #transaction-list-header{
+        margin: 0px 20px 5px 20px;
+        font-weight: bold;
+    }
+
+    #transaction-list-render{
+        margin: 0px 20px;
+        padding: 6px 2px 6px 4px;
+    }
+
+    #category{
+        padding: 0px
+    }
+
+    #date-form{
+        padding: 0px
+    }
+
+    #description{
+        padding: 0px
+    }
+
+    #amount{
+        padding: 0px
+    }
+
+    #action{
+        padding: 0px
+    }
+
+    #render-action{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0px;
+        gap: 5px
+    }
+
+    #trash button,
+    #edit button{
+        border: none;
+        background: none;
+        border: 0.7px solid #222E50;
+        border-radius: 11%;
+    }
+
+    #trash button:hover,
+    #edit button:hover{
+        border: 1.1px solid #222E50;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+        box-sizing: border-box;
+    }
+
+    #render-icon{
+        color: #222E50;
+        font-size: 9px;
+    }
+
+
+
+    /* add transaction form */
+    #transaction-form-container{
+        display: none;
+        justify-content: center;
+        margin-top: 8%;
+    }
+
+    #transaction-form{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 70%;
+    }
+
+    #add-transaction-header{
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .my-form-label{
+        font-weight: bold;
+        margin-bottom: 3px;
+    }
+
+    #type-select,
+    #category-select
+    {
+        font-size: 10px;
+    }
+
+
+    input#date-form,
+    #description-form,
+    #amount-form{
+        font-size: 10px;
+        padding: 5px 0px 5px 5px;
+    }
+
+    #submit{
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: 40px;
+    }
+
+    #submit-button,
+    #update-button{
+        background-color: #222E50;
+        color: white;
+        font-weight: bold;
+        font-size: 10px;
+        width: 80px;
+        height: 25px;
+        border: none;
+        border-radius: 3px;
+    }
+
+    #cancel-button{
+        background-color: white;
+        color: #222E50;
+        font-weight: bold;
+        font-size: 10px;
+        width: 80px;
+        height: 25px;
+        border: 1px solid #222E50;
+        border-radius: 3px;
+    }
+
+    #data-id{
+        display: none;
+    }
+
+    /* form validation field */
+    #form-validation{
+        position: fixed;
+        top: 30%;
+        left: 23%;
+        display: none;
+        justify-content: center;
+    }
+
+    #validation-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        margin: 0px;
+        width: 340px;
+        height: 180px;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    }
+
+    #validation-icon{
+        font-size: 60px;
+    }
+
+    #validation-text{
+        font-size: 14px;
+    }
 }
 
 
@@ -100,7 +406,7 @@ body{
 /* medium screen */
 @media (min-width: 768px) and (max-width: 991px){
     body{
-        font-size: 13px;
+        font-size: 12px;
     }
 
     /* navbar */
@@ -110,6 +416,9 @@ body{
 
     #navbar{
         display: flex;
+        position: sticky;
+        top: 0px;
+        left: 0px;
         width: 100%;
         height: 50px;
     }
@@ -148,6 +457,305 @@ body{
     .dropdown-icon{
         margin-right: 7px;
     } 
+
+    #add-transaction-button-nav{
+        background: none;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 0px;
+    }
+
+    #add-transaction-button-nav:hover{
+        color: pink;
+    }
+
+
+    /* dashboard */
+
+
+    /* delete warning */
+    #delete-warning-container{
+        position: fixed;
+        top: 25%;
+        display: flex;
+        justify-content: center;
+        font-size: 14px;
+    }
+
+    #delete-warning{
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 35%;
+        height: 180px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #warning-header{
+        color: #FF5757;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    #warning-buttons{
+        margin-top: 25px;
+    }
+
+    #delete-yes{
+        color: #0f5132;
+        background-color: #d1e7dd;
+        border: 1px solid #badbcc;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+        border-radius: 5px;
+    }
+
+    #delete-no{
+        color: #664d03;
+        background-color: #fff3cd;
+        border: 1px solid #ffecb5;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+        border-radius: 5px;
+    }
+
+    #delete-yes:hover,
+    #delete-no:hover{
+        font-weight: bold;
+    }
+
+
+    /* add transaction page */
+    #transaction{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #transaction-bg{
+        background-color: #F9FAFB;
+        border-radius: 15px;
+        width: 93%;
+        height: 80vh;
+        margin-top: 40px;
+        overflow: hidden;
+    }
+
+    #add-transaction{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+        margin-right: 35px;
+        margin-bottom: 18px;
+    }
+
+    #add-transaction-box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #222E50;
+        height: 33px;
+        width: 140px;
+        border-radius: 8px;
+    }
+
+    #add-transaction-box:hover{
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    }
+
+
+    #add-transaction-button{
+        border: none;
+        background: none;
+        font-weight: bold;
+    }
+
+    #add-transaction-button a{
+        text-decoration: none;
+        color: white;
+    }
+
+    #add-transaction-button a:hover{
+        color: pink;
+    }
+
+    #add-transaction-icon{
+        margin-right: 5px;
+    }
+
+    #transaction-list{
+        max-height: 80%;
+        overflow: auto;
+    }
+
+    #transaction-list::-webkit-scrollbar {
+        width: 0.5em;
+    }
+    
+    #transaction-list::-webkit-scrollbar-thumb {
+        background-color: #c1c1c1;
+        border-radius: 25px;
+    }
+
+    #transaction-list-header{
+        margin: 0px 30px 5px 30px;
+        font-weight: bold;
+    }
+
+    #transaction-list-render{
+        margin: 0px 25px;
+        padding: 8px 6px 8px 8px;
+    }
+    
+    #category{
+        padding: 0px
+    }
+
+    #date-form{
+        padding: 0px
+    }
+
+    #description{
+        padding: 0px
+    }
+
+    #amount{
+        padding: 0px
+    }
+
+    #action{
+        padding: 0px
+    }
+
+    #render-action{
+        display: flex;
+        padding: 0px;
+        gap: 5px
+    }
+
+    #trash button,
+    #edit button{
+        border: none;
+        background: none;
+        border: 0.7px solid #222E50;
+        border-radius: 13%;
+    }
+
+    #trash button:hover,
+    #edit button:hover{
+        border: 1.3px solid #222E50;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    }
+
+    #render-icon{
+        color: #222E50;
+    }
+
+
+
+    /* add transaction form */
+    #transaction-form-container{
+        display: none;
+        justify-content: center;
+        margin-top: 6%;
+    }
+
+    #transaction-form{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 70%;
+    }
+
+    #add-transaction-header{
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .my-form-label{
+        font-weight: bold;
+        margin-bottom: 3px;
+    }
+
+    #type-select,
+    #category-select
+    {
+        font-size: 12px;
+    }
+
+
+    input#date-form,
+    #description-form,
+    #amount-form{
+        font-size: 12px;
+        padding: 5px 0px 5px 5px;
+    }
+
+    #submit{
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 40px;
+    }
+
+    #submit-button,
+    #update-button{
+        background-color: #222E50;
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+        width: 90px;
+        height: 27px;
+        border: none;
+        border-radius: 3px;
+    }
+
+    #cancel-button{
+        background-color: white;
+        color: #222E50;
+        font-weight: bold;
+        font-size: 12px;
+        width: 90px;
+        height: 27px;
+        border: 1px solid #222E50;
+        border-radius: 3px;
+    }
+
+    #data-id{
+        display: none;
+    }
+
+    /* form validation field */
+    #form-validation{
+        position: fixed;
+        top: 30%;
+        left: 27.5%;
+        display: none;
+        justify-content: center;
+    }
+
+    #validation-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        margin: 0px;
+        width: 370px;
+        height: 190px;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    }
+
+    #validation-icon{
+        font-size: 70px;
+    }
+
+    #validation-text{
+        font-size: 16px;
+    }
 }
 
 
@@ -168,7 +776,7 @@ body{
 /* large screen */
 @media (min-width: 992px){
     body{
-        font-size: 15px;
+        font-size: 14px;
     }
 
     #index-content{
@@ -187,6 +795,9 @@ body{
     #navbar{
         display: flex;
         flex-direction: column;
+        position: fixed;
+        top: 0px;
+        height: 100vh;
         gap: 30px;
         padding: 0px;
     }
@@ -226,4 +837,360 @@ body{
         margin-right: 15px;
     }
 
+    #add-transaction-button-nav{
+        background: none;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 0px;
+    }
+
+    #add-transaction-button-nav:hover{
+        color: pink;
+    }
+
+    /* dashboard content */
+    #dashboard{
+        margin-left: 25%;
+    }
+
+
+    /* delete warning */
+    #delete-warning-container{
+        position: fixed;
+        top: 25%;
+        left: 25%;
+        display: flex;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    #delete-warning{
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+        height: 200px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #warning-header{
+        color: #FF5757;
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+    #warning-buttons{
+        margin-top: 25px;
+    }
+
+    #delete-yes{
+        color: #0f5132;
+        background-color: #d1e7dd;
+        border: 1px solid #badbcc;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+        border-radius: 5px;
+    }
+
+    #delete-no{
+        color: #664d03;
+        background-color: #fff3cd;
+        border: 1px solid #ffecb5;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+        border-radius: 5px;
+    }
+
+    #delete-yes:hover,
+    #delete-no:hover{
+        font-weight: bold;
+    }
+
+    /* add transaction page */
+    #transaction{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 25%;
+        height: 100%;
+    }
+
+    #transaction-bg{
+        background-color: #F9FAFB;
+        border-radius: 15px;
+        width: 95%;
+        height: 80%;
+        overflow: hidden;
+    }
+
+    #add-transaction{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+        margin-right: 30px;
+        margin-bottom: 20px;
+    }
+
+    #add-transaction-box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #222E50;
+        height: 40px;
+        width: 160px;
+        border-radius: 8px;
+    }
+
+    #add-transaction-box:hover{
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    }
+
+    #add-transaction-button{
+        border: none;
+        background: none;
+        font-weight: bold;
+    }
+
+    #add-transaction-button a{
+        text-decoration: none;
+        color: white;
+    }
+
+    #add-transaction-button a:hover{
+        color: pink;
+    }
+
+    #add-transaction-icon{
+        margin-right: 5px;
+    }
+
+    #transaction-list{
+        max-height: 80%;
+        overflow: auto;
+    }
+
+    #transaction-list::-webkit-scrollbar {
+        width: 0.5em;
+    }
+    
+    #transaction-list::-webkit-scrollbar-thumb {
+        background-color: #c1c1c1;
+        border-radius: 25px;
+    }
+
+    #transaction-list-header{
+        margin: 0px 30px 5px 33px;
+        padding-right: 8px;
+        font-weight: bold;
+    }
+
+    #transaction-list-render{
+        margin: 0px 30px;
+        padding: 10px 8px 10px 8px;
+    }
+
+    #category{
+        padding: 0px
+    }
+
+    #date-form{
+        padding: 0px
+    }
+
+    #description{
+        padding: 0px
+    }
+
+    #amount{
+        padding: 0px
+    }
+
+    #action{
+        padding: 0px
+    }
+
+    #render-action{
+        display: flex;
+        padding: 0px;
+        gap: 5px
+    }
+
+    #trash button,
+    #edit button{
+        border: none;
+        background: none;
+        border: 0.7px solid #222E50;
+        border-radius: 15%;
+    }
+
+    #trash button:hover,
+    #edit button:hover{
+        border: 1.3px solid #222E50;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    }
+
+    #render-icon{
+        color: #222E50;
+    }
+
+
+    /* add transaction form */
+    #transaction-form-container{
+        display: none;
+        justify-content: center;
+        margin-left: 25%;
+    }
+
+    #add-transaction-header{
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    #transaction-form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 80%;
+    }
+
+    .my-form-label{
+        font-weight: bold;
+        margin-bottom: 3px;
+    }
+
+    #type-select,
+    #category-select
+    {
+        font-size: 14px;
+    }
+
+
+    input#date-form,
+    #description-form,
+    #amount-form{
+        font-size: 14px;
+        padding: 5px 0px 5px 5px;
+    }
+
+    #submit{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 60px;
+    }
+
+    #submit-button,
+    #update-button{
+        background-color: #222E50;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        width: 100px;
+        height: 30px;
+        border: none;
+        border-radius: 3px;
+    }
+
+    #cancel-button{
+        background-color: white;
+        color: #222E50;
+        font-weight: bold;
+        font-size: 14px;
+        width: 100px;
+        height: 30px;
+        border: 1px solid #222E50;
+        border-radius: 3px;
+    }
+
+    /* update transaction form */
+    #update-form-container{
+        display: none;
+        justify-content: center;
+        margin-left: 25%;
+    }
+
+    #update-transaction-header{
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    #update-form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 80%;
+    }
+
+    .my-update-form-label{
+        font-weight: bold;
+        margin-bottom: 3px;
+    }
+
+    #type-update,
+    #category-update
+    {
+        font-size: 14px;
+    }
+
+
+    input#date-update,
+    #description-update,
+    #amount-update{
+        font-size: 14px;
+        padding: 5px 0px 5px 5px;
+    }
+
+    #update{
+        display: flex;
+        justify-content: center;
+    }
+
+    #update-button{
+        background-color: #222E50;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        width: 100px;
+        height: 30px;
+        border: none;
+        border-radius: 3px;
+    }
+
+    #data-id{
+        display: none;
+    }
+
+    /* form validation field */
+    #form-validation{
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        display: none;
+        justify-content: center;
+    }
+
+    #validation-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        margin: 0px;
+        width: 400px;
+        height: 200px;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    }
+
+    #validation-icon{
+        font-size: 80px;
+    }
+
+    #validation-text{
+        font-size: 18px;
+    }
 }

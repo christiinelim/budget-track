@@ -1,0 +1,66 @@
+[
+    {
+        "id": 123,
+        "type": "Expenditure",
+        "category": "Food",
+        "date": "2023-12-15",
+        "description": "Lunch at genki sushi",
+        "amount": 12
+    },
+    {
+        "id": 456,
+        "type": "Income",
+        "category": "Salary",
+        "date": "2023-12-20",
+        "description": "December salary",
+        "amount": 1500
+    },
+    {
+        "id": 789,
+        "type": "Expenditure",
+        "category": "Bill",
+        "date": "2023-12-25",
+        "description": "Phone bill",
+        "amount": 58.80
+    },
+    {
+        "id": 423,
+        "type": "Expenditure",
+        "category": "Shopping",
+        "date": "2023-11-03",
+        "description": "Lovet midi dress",
+        "amount": 59.90
+    },
+    {
+        "id": 563,
+        "type": "Expenditure",
+        "category": "Food",
+        "date": "2024-02-05",
+        "description": "Takoyaki",
+        "amount": 4.50
+    },
+    {
+        "id": 3718,
+        "type": "Income",
+        "category": "Salary",
+        "date": "2024-01-15",
+        "description": "2023 AWS",
+        "amount": 600
+    },
+    {
+        "id": 3198,
+        "type": "Expenditure",
+        "category": "Bill",
+        "date": "2024-01-25",
+        "description": "January utility bill",
+        "amount": 108.90
+    },
+    {
+        "id": 3473,
+        "type": "Expenditure",
+        "category": "Shopping",
+        "date": "2024-01-23",
+        "description": "CNY shopping",
+        "amount": 204
+    }
+]
