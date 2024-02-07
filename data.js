@@ -5,12 +5,16 @@
 
 // async function loadData() {
 //     const response = await axios.get(`${BASE_JSON_BIN_URL}/${BIN_ID}/latest`);
-//     return response.data.record
+//     const data = response.data
+        // data.sort((b, a) => new Date(a.date) - new Date(b.date));
+        // return data
 // };
 
 async function loadData() {
     const response = await axios.get("data.json");
-    return response.data
+    const data = response.data
+    data.sort((b, a) => new Date(a.date) - new Date(b.date));
+    return data
 };
 
 // auto save data
@@ -23,24 +27,12 @@ async function loadData() {
 //     return response.data.record
 // }
 
-function createTransaction(data){
-    const newTransaction = {
-        "id": Math.floor(Math.random() * 10000),
-        "type": document.querySelector("#type-select").value,
-        "category": document.querySelector("#category-select").value,
-        "date": document.querySelector("#date-form").value,
-        "description": document.querySelector("#description-form").value,
-        "amount": parseFloat(document.querySelector("#amount-form").value)
-    };
+
+function createTransaction(data, newTransaction){
     data.push(newTransaction)
 };
 
-function updateTransaction(data){
-    const newType = document.querySelector("#type-select").value;
-    const newCategory = document.querySelector("#category-select").value;
-    const newDate = document.querySelector("#date-form").value;
-    const newDescription = document.querySelector("#description-form").value;
-    const newAmount = document.querySelector("#amount-form").value;
+function updateTransaction(data, newType, newCategory, newDate, newDescription, newAmount){
 
     for (let element of data){
         if (element.id == Number(document.querySelector("#data-id").innerHTML)){
@@ -64,3 +56,71 @@ function deleteTransaction(data){
         index = index + 1
     }
 }
+
+
+
+// FOR DASHBOARD
+function getPreviousMonth(){
+    const today = new Date();
+    today.setDate(1);
+    today.setDate(0);
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1; 
+    month = month < 10 ? '0' + month : month;
+    const previousMonth = year + '-' + month;
+
+    return previousMonth
+}
+
+function getCurrentMonth(){
+    const currentMonth = new Date().toJSON().slice(0, 7);
+
+    return currentMonth
+}
+
+function extractData(data, month){
+    const extractedData = [];
+    for (let element of data){
+        if (element.date.slice(0,7) == month){
+            extractedData.push(element)
+        }
+    }
+    return extractedData
+}
+
+function loadDashboard(data){
+    let currentExpenditure = 0;
+    let currentIncome = 0;
+    let shoppingTransactions = 0;
+    let foodTransactions = 0;
+    let transportTransactions = 0;
+    let billTransactions = 0;
+
+    for (let element of data) {
+        if (element.type == "Income"){
+            currentIncome = currentIncome + element.amount;
+        } else {
+            if (element.category == "Shopping"){
+                shoppingTransactions = shoppingTransactions + 1;
+            } else if (element.category == "Food"){
+                foodTransactions = foodTransactions + 1;
+            } else if (element.category == "Transport"){
+                transportTransactions = transportTransactions + 1;
+            } else {
+                billTransactions = billTransactions + 1
+            }
+            currentExpenditure = currentExpenditure + element.amount;
+        }
+    }
+
+    const dashboardData = {
+        "currentExpenditure": currentExpenditure,
+        "currentIncome": currentIncome,
+        "shoppingTransactions": shoppingTransactions,
+        "foodTransactions": foodTransactions,
+        "transportTransactions": transportTransactions,
+        "billTransactions": billTransactions,
+    }
+    
+    return dashboardData
+};

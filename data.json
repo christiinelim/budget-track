@@ -43,7 +43,7 @@
         "id": 3718,
         "type": "Income",
         "category": "Salary",
-        "date": "2024-01-15",
+        "date": "2024-02-15",
         "description": "2023 AWS",
         "amount": 600
     },
@@ -51,7 +51,7 @@
         "id": 3198,
         "type": "Expenditure",
         "category": "Bill",
-        "date": "2024-01-25",
+        "date": "2024-02-25",
         "description": "January utility bill",
         "amount": 108.90
     },
@@ -62,5 +62,53 @@
         "date": "2024-01-23",
         "description": "CNY shopping",
         "amount": 204
+    }, 
+    {
+        "id": 8837,
+        "type": "Expenditure",
+        "category": "Food",
+        "date": "2024-02-01",
+        "description": "Lunch with colleagues",
+        "amount": 45.05
+    },
+    {
+        "id": 3462,
+        "type": "Expenditure",
+        "category": "Food",
+        "date": "2024-02-04",
+        "description": "Don Don Don Ki meat",
+        "amount": 10.65
+    },
+    {
+        "id": 341,
+        "type": "Expenditure",
+        "category": "Bill",
+        "date": "2024-02-03",
+        "description": "Singtel Bill",
+        "amount": 58.90
+    },
+    {
+        "id": 3452,
+        "type": "Expenditure",
+        "category": "Bill",
+        "date": "2024-02-05",
+        "description": "School Fee",
+        "amount": 78
+    },
+    {
+        "id": 4561,
+        "type": "Expenditure",
+        "category": "Shopping",
+        "date": "2024-02-03",
+        "description": "CNY Spree",
+        "amount": 58
+    },
+    {
+        "id": 8764,
+        "type": "Income",
+        "category": "Salary",
+        "date": "2024-01-24",
+        "description": "Part time pay",
+        "amount": 560
     }
 ]

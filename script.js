@@ -55,7 +55,16 @@ async function main(){
         const validated = await formValidation();
 
         if (validated){
-            await createTransaction(data);
+            const newTransaction = {
+                "id": Math.floor(Math.random() * 10000),
+                "type": document.querySelector("#type-select").value,
+                "category": document.querySelector("#category-select").value,
+                "date": document.querySelector("#date-form").value,
+                "description": document.querySelector("#description-form").value,
+                "amount": parseFloat(document.querySelector("#amount-form").value)
+            };
+
+            await createTransaction(data, newTransaction);
             // await saveData(data);
             await renderTransactionList(data);
             document.querySelector("#transaction-form-container").style.display = "none";
@@ -73,7 +82,12 @@ async function main(){
         const validated = await formValidation();
 
         if (validated){
-            await updateTransaction(data);
+            const newType = document.querySelector("#type-select").value;
+            const newCategory = document.querySelector("#category-select").value;
+            const newDate = document.querySelector("#date-form").value;
+            const newDescription = document.querySelector("#description-form").value;
+            const newAmount = document.querySelector("#amount-form").value;
+            await updateTransaction(data, newType, newCategory, newDate, newDescription, newAmount);
             // await saveData(data);
             renderTransactionList(data);
             document.querySelector("#transaction-form-container").style.display = "none";
@@ -101,8 +115,7 @@ async function main(){
 
 }
 
-
-
+// render transaction data
 function renderTransactionList(data){
     const divElement = document.querySelector("#transaction-list");
     divElement.innerHTML = `
@@ -192,7 +205,6 @@ function onEditButtonClick(element){
     document.querySelector("#description-form").value = element.description;
     document.querySelector("#amount-form").value = element.amount;
 }
-
 
 // delete transaction button
 function onDeleteButtonClick(element){
