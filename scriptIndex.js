@@ -25,7 +25,7 @@ async function main(){
     let data = await loadData();
 
     // extract previous month data
-    let extractPreviousMonthData = await extractData(data, getPreviousMonth());
+    let extractPreviousMonthData = await extractData(data, getPreviousMonth(getCurrentMonth()));
     let previousMonthData = await loadDashboard(extractPreviousMonthData); 
 
     // extract current month data

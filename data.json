@@ -61,7 +61,7 @@
         "category": "Shopping",
         "date": "2024-01-23",
         "description": "CNY shopping",
-        "amount": 204
+        "amount": 204.20
     }, 
     {
         "id": 8837,
@@ -109,6 +109,6 @@
         "category": "Salary",
         "date": "2024-01-24",
         "description": "Part time pay",
-        "amount": 560
+        "amount": 560.40
     }
 ]

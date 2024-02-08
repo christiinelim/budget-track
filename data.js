@@ -60,16 +60,20 @@ function deleteTransaction(data){
 
 
 // FOR DASHBOARD
-function getPreviousMonth(){
-    const today = new Date();
-    today.setDate(1);
-    today.setDate(0);
-    const year = today.getFullYear();
-    let month = today.getMonth() + 1; 
-    month = month < 10 ? '0' + month : month;
-    const previousMonth = year + '-' + month;
+function getPreviousMonth(inputDate){
+    const [year, month] = inputDate.split('-').map(Number);
+    
+    let prevMonth = month - 1;
+    let prevYear = year;
 
-    return previousMonth
+    if (prevMonth === 0) {
+        prevMonth = 12; 
+        prevYear--; 
+    }
+
+    const formattedPrevMonth = `${prevYear}-${prevMonth.toString().padStart(2, '0')}`;
+
+    return formattedPrevMonth;
 }
 
 function getCurrentMonth(){
@@ -137,4 +141,96 @@ function checkDecimal(value){
     } else {
         return parseInt(value)
     }
+}
+
+
+async function organizeData(data){
+    const dataSet = {
+        "dataAxis": ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+        "expenditureData": [],
+        "incomeData": [],
+        "spendingsData": {
+            "total": [],
+            "shopping": [],
+            "food": [],
+            "transport": [],
+            "bill": []
+        }
+    }
+
+    let currentMonthAndYear = getCurrentMonth(); // get 2024-02
+    let currentYear = currentMonthAndYear.slice(0,4); // get 2024
+    let expenditure = 0;
+    let income = 0;
+    let shopping = 0;
+    let food = 0;
+    let transport = 0;
+    let bill = 0;
+
+    for (let element of data){
+        // check if it is current year data
+        if (element.date.slice(0,4) == currentYear){
+            if (element.date.slice(0,7) == currentMonthAndYear){
+                if (element.type == "Income"){
+                    income = income + element.amount;
+                } else {
+                    expenditure = expenditure + element.amount;
+                    if (element.category == "Shopping") {
+                        shopping = shopping + element.amount
+                    } else if (element.category == "Food") {
+                        food = food + element.amount
+                    } else if (element.category == "Transport") {
+                        transport = transport + element.amount
+                    } else {
+                        bill = bill + element.amount
+                    }
+                }
+            } else {
+                // push expenditureData 
+                dataSet.expenditureData.unshift(checkDecimal(expenditure));
+                dataSet.incomeData.unshift(checkDecimal(income));
+                dataSet.spendingsData.total.unshift(checkDecimal(expenditure));
+                dataSet.spendingsData.shopping.unshift(checkDecimal(shopping));
+                dataSet.spendingsData.food.unshift(checkDecimal(food));
+                dataSet.spendingsData.transport.unshift(checkDecimal(transport));
+                dataSet.spendingsData.bill.unshift(checkDecimal(bill));
+
+                // reinitialize
+                currentMonthAndYear = getPreviousMonth(getCurrentMonth());
+                expenditure = 0;
+                income = 0;
+                shopping = 0;
+                food = 0;
+                transport = 0;
+                bill = 0;
+
+                if (element.type == "Income"){
+                    income = income + element.amount;
+                } else {
+                    expenditure = expenditure + element.amount;
+                    if (element.category == "Shopping") {
+                        shopping = shopping + element.amount
+                    } else if (element.category == "Food") {
+                        food = food + element.amount
+                    } else if (element.category == "Transport") {
+                        transport = transport + element.amount
+                    } else {
+                        bill = bill + element.amount
+                    }
+                }
+            }
+        } else {
+            // push expenditureData 
+            dataSet.expenditureData.unshift(checkDecimal(expenditure));
+            dataSet.incomeData.unshift(checkDecimal(income));
+            dataSet.spendingsData.total.unshift(checkDecimal(expenditure));
+            dataSet.spendingsData.shopping.unshift(checkDecimal(shopping));
+            dataSet.spendingsData.food.unshift(checkDecimal(food));
+            dataSet.spendingsData.transport.unshift(checkDecimal(transport));
+            dataSet.spendingsData.bill.unshift(checkDecimal(bill));
+            break
+        }
+    }
+
+    return dataSet
 }
