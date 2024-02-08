@@ -26,20 +26,6 @@ async function main(){
 
     renderTransactionList(data);
 
-    // small navbar add transaction
-    document.querySelector("#add-transaction-button-nav-small").addEventListener("click", function(){
-        displayTransaction();
-        document.querySelector("#navbar-small").style.height = "50px";
-        document.querySelector("#dropdown-small").style.display = "none";
-        document.querySelector(".bi").classList.remove("bi-box-arrow-right");
-        document.querySelector(".bi").classList.add("bi-list");
-    });
-
-    // navbar add transaction
-    document.querySelector("#add-transaction-button-nav").addEventListener("click", function(){
-        displayTransaction();
-    })
-
     // add transaction button
     document.querySelector("#add-transaction-button").addEventListener("click", function(){
         displayTransaction();
@@ -61,7 +47,7 @@ async function main(){
                 "category": document.querySelector("#category-select").value,
                 "date": document.querySelector("#date-form").value,
                 "description": document.querySelector("#description-form").value,
-                "amount": parseFloat(document.querySelector("#amount-form").value)
+                "amount": document.querySelector("#amount-form").value
             };
 
             await createTransaction(data, newTransaction);
@@ -69,7 +55,14 @@ async function main(){
             await renderTransactionList(data);
             document.querySelector("#transaction-form-container").style.display = "none";
             document.querySelector("#transaction-form").reset();
+        } else if (isNaN(Number(document.querySelector("#amount-form").value))) {
+            document.querySelector("#validation-text").innerHTML = "Please enter a valid number for amount";
+            document.querySelector("#form-validation").style.display = "flex";
+            setTimeout(function(){
+                document.querySelector("#form-validation").style.display = "none"
+            }, 1500)
         } else {
+            document.querySelector("#validation-text").innerHTML = "Please fill up all the fields";
             document.querySelector("#form-validation").style.display = "flex";
             setTimeout(function(){
                 document.querySelector("#form-validation").style.display = "none"
@@ -92,7 +85,14 @@ async function main(){
             renderTransactionList(data);
             document.querySelector("#transaction-form-container").style.display = "none";
             document.querySelector("#transaction-form").reset();
+        } else if (isNaN(Number(document.querySelector("#amount-form").value))) {
+            document.querySelector("#validation-text").innerHTML = "Please enter a valid number for amount";
+            document.querySelector("#form-validation").style.display = "flex";
+            setTimeout(function(){
+                document.querySelector("#form-validation").style.display = "none"
+            }, 1500)
         } else {
+            document.querySelector("#validation-text").innerHTML = "Please fill up all the fields";
             document.querySelector("#form-validation").style.display = "flex";
             setTimeout(function(){
                 document.querySelector("#form-validation").style.display = "none"
@@ -140,14 +140,18 @@ function renderTransactionList(data){
 
     let index = 0;
     for (let element of data){
+        // check decimal point of amount
+        let amount = element.amount;
+        amount = checkDecimal(amount);
+
         const newDiv = document.createElement("div");
-        newDiv.setAttribute("id", "transaction-list-render")
+        newDiv.setAttribute("id", "transaction-list-render");
         newDiv.classList.add("row");
         newDiv.innerHTML = `
             <div id="category" class="col-2">${element.category}</div>
             <div id="date" class="col-3">${element.date}</div>
             <div id="description" class="col-4">${element.description}</div>
-            <div id="amount" class="col-2">-$${element.amount}</div>
+            <div id="amount" class="col-2">-$${amount}</div>
             <div id="render-action" class="col-1">
                 <div id="trash"><button id="delete-button"><i id="render-icon" class="bi bi-trash-fill"></i></button></div>
                 <div id="edit"><button id="edit-button"><a href="#transaction-form-container"><i id="render-icon" class="bi bi-pencil-fill"></i></a></button></div>
@@ -163,7 +167,7 @@ function renderTransactionList(data){
         // check amount color
         if (element.type == "Income") {
             newDiv.querySelector("#amount").style.color = "#69A287"
-            newDiv.querySelector("#amount").innerHTML = `+$${element.amount}`
+            newDiv.querySelector("#amount").innerHTML = `+$${amount}`
         } else {
             newDiv.querySelector("#amount").style.color = "#FF5757"
         };
@@ -219,7 +223,11 @@ function formValidation(){
     const newAmount = document.querySelector("#amount-form").value;
 
     if (newDate != "" && newDescription != "" && newAmount != ""){
-        return true
+        if (isNaN(Number(newAmount))) {
+            return false
+        } else {
+            return true
+        }
     } else {
         return false
     }

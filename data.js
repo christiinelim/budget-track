@@ -88,7 +88,7 @@ function extractData(data, month){
     return extractedData
 }
 
-function loadDashboard(data){
+async function loadDashboard(data){
     let currentExpenditure = 0;
     let currentIncome = 0;
     let shoppingTransactions = 0;
@@ -113,6 +113,11 @@ function loadDashboard(data){
         }
     }
 
+    // check decimal point of expenditure and income
+
+   currentExpenditure = await checkDecimal(currentExpenditure);
+   currentIncome = await checkDecimal(currentIncome);
+
     const dashboardData = {
         "currentExpenditure": currentExpenditure,
         "currentIncome": currentIncome,
@@ -124,3 +129,12 @@ function loadDashboard(data){
     
     return dashboardData
 };
+
+
+function checkDecimal(value){
+    if (value.toString().includes(".")) {
+        return parseFloat(value).toFixed(2)
+    } else {
+        return parseInt(value)
+    }
+}

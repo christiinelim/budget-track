@@ -1,9 +1,32 @@
 async function main(){
+
+    // menu button
+    document.querySelector("#menu-button-click").addEventListener("click", () => {
+        if (document.querySelector(".bi-list")){
+            document.querySelector("#navbar-small").style.height = "100vh";
+            document.querySelector("#dropdown-small").style.display = "flex";
+            document.querySelector(".bi").classList.remove("bi-list");
+            document.querySelector(".bi").classList.add("bi-box-arrow-right");
+        } else {
+            document.querySelector("#navbar-small").style.height = "50px";
+            document.querySelector("#dropdown-small").style.display = "none";
+            document.querySelector(".bi").classList.remove("bi-box-arrow-right");
+            document.querySelector(".bi").classList.add("bi-list");
+        }
+    });
+
+    document.querySelector(".dropdown-option-small").addEventListener("click", () => {
+        document.querySelector("#navbar-small").style.height = "50px";
+        document.querySelector("#dropdown-small").style.display = "none";
+        document.querySelector(".bi").classList.remove("bi-box-arrow-right");
+        document.querySelector(".bi").classList.add("bi-list");
+    })
+    
     let data = await loadData();
 
     // extract previous month data
     let extractPreviousMonthData = await extractData(data, getPreviousMonth());
-    let previousMonthData = await loadDashboard(extractPreviousMonthData);
+    let previousMonthData = await loadDashboard(extractPreviousMonthData); 
 
     // extract current month data
     let extractedData = await extractData(data, getCurrentMonth());
@@ -55,53 +78,6 @@ async function main(){
         document.querySelector("#transaction-list").style.display = "block";
         // render list
         await renderBreakdownList(relevantBillData);
-    })
-
-
-    // TRANSACTION FORM
-    // small navbar add transaction
-    document.querySelector("#add-transaction-button-nav-small").addEventListener("click", function(){
-        displayTransaction();
-        document.querySelector("#navbar-small").style.height = "50px";
-        document.querySelector("#dropdown-small").style.display = "none";
-        document.querySelector(".bi").classList.remove("bi-box-arrow-right");
-        document.querySelector(".bi").classList.add("bi-list");
-    });
-
-    // navbar add transaction
-    document.querySelector("#add-transaction-button-nav").addEventListener("click", function(){
-        displayTransaction();
-    })
-
-    // form cancel button
-    document.querySelector("#cancel-button").addEventListener("click", function(){
-        document.querySelector("#transaction-form-container").style.display = "none";
-    })
-
-    // add transaction submit form button
-    document.querySelector("#submit-button").addEventListener("click", async function(){
-        const validated = await formValidation();
-
-        if (validated){
-            const newTransaction = {
-                "id": Math.floor(Math.random() * 10000),
-                "type": document.querySelector("#type-select").value,
-                "category": document.querySelector("#category-select").value,
-                "date": document.querySelector("#date-form").value,
-                "description": document.querySelector("#description-form").value,
-                "amount": parseFloat(document.querySelector("#amount-form").value)
-            };
-
-            await createTransaction(data, newTransaction);
-            // await saveData(data); // CHECK TO MAKE SURE DATA OF DASHBOARD UPDATED
-            document.querySelector("#transaction-form-container").style.display = "none";
-            document.querySelector("#transaction-form").reset();
-        } else {
-            document.querySelector("#form-validation").style.display = "flex";
-            setTimeout(function(){
-                document.querySelector("#form-validation").style.display = "none"
-            }, 1500)
-        }
     });
 };
 
@@ -127,6 +103,9 @@ function renderBreakdownList(data){
 
     let index = 0;
     for (let element of data){
+        let amount = element.amount;
+        amount = checkDecimal(amount);
+
         const newDiv = document.createElement("div");
         newDiv.setAttribute("id", "transaction-list-render")
         newDiv.classList.add("row");
@@ -134,7 +113,7 @@ function renderBreakdownList(data){
             <div id="category" class="col-2">${element.category}</div>
             <div id="date" class="col-3">${element.date}</div>
             <div id="description" class="col-5">${element.description}</div>
-            <div id="amount" class="col-2">-$${element.amount}</div>
+            <div id="amount" class="col-2">-$${amount}</div>
         `;
 
         
@@ -146,7 +125,7 @@ function renderBreakdownList(data){
         // check amount color
         if (element.type == "Income") {
             newDiv.querySelector("#amount").style.color = "#69A287"
-            newDiv.querySelector("#amount").innerHTML = `+$${element.amount}`
+            newDiv.querySelector("#amount").innerHTML = `+$${amount}`
         } else {
             newDiv.querySelector("#amount").style.color = "#FF5757"
         };
@@ -160,9 +139,13 @@ function updateDashboard(dashboardData){
     
     // check balance 
     if (dashboardData.currentIncome > dashboardData.currentExpenditure){
-        document.querySelector("#balance-amount").innerHTML = `$${dashboardData.currentIncome - dashboardData.currentExpenditure}`;
+        let currentBalance = dashboardData.currentIncome - dashboardData.currentExpenditure;
+        currentBalance = checkDecimal(currentBalance);
+        document.querySelector("#balance-amount").innerHTML = `$${currentBalance}`;
     } else {
-        document.querySelector("#balance-amount").innerHTML = `-$${dashboardData.currentExpenditure - dashboardData.currentIncome}`;
+        let currentBalance = dashboardData.currentExpenditure - dashboardData.currentIncome;
+        currentBalance = checkDecimal(currentBalance);
+        document.querySelector("#balance-amount").innerHTML = `-$${currentBalance}`;
         document.querySelector("#balance-amount").style.color = "rgb(255, 87, 87)";
     }
 
@@ -223,11 +206,6 @@ function compareTransactions(previousMonthData, currentMonthData){
     const balanceChange = Math.floor((currentMonthBalance - previousMonthBalance) / previousMonthBalance * 100);
     const expenditureChange = Math.floor((currentMonthData.currentExpenditure - previousMonthData.currentExpenditure) / previousMonthData.currentExpenditure * 100);
     const incomeChange = Math.floor((currentMonthData.currentIncome - previousMonthData.currentIncome) / previousMonthData.currentIncome * 100);
-
-    console.log(balanceChange);
-    console.log(expenditureChange);
-
-    console.log(incomeChange);
 
     if (balanceChange == Infinity) {
         document.querySelector("#balance-compare-icon").innerHTML = `<i class="bi bi-dash-circle-fill"></i>`;

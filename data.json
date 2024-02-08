@@ -45,7 +45,7 @@
         "category": "Salary",
         "date": "2024-02-15",
         "description": "2023 AWS",
-        "amount": 600
+        "amount": 600.20
     },
     {
         "id": 3198,
@@ -101,7 +101,7 @@
         "category": "Shopping",
         "date": "2024-02-03",
         "description": "CNY Spree",
-        "amount": 58
+        "amount": 58.4
     },
     {
         "id": 8764,

@@ -28,7 +28,6 @@
                 <div id="dropdown-small">
                     <div class="dropdown-option-small"><a href="index.html"><i class="bi bi-bar-chart-steps dropdown-icon-small"></i>DASHBOARD</a></div>
                     <div class="dropdown-option-small"><a href="budget.html"><i class="bi bi-cash-stack dropdown-icon-small"></i>TRANSACTION</a></div>
-                    <div class="dropdown-option-small"><button id="add-transaction-button-nav-small"><a href="#transaction-form-container"><i class="bi bi-currency-exchange dropdown-icon-small"></i>ADD TRANSACTION</a></button></div>
                 </div>
             </nav>
 
@@ -40,7 +39,6 @@
                 <div id="dropdown">
                     <div class="dropdown-option"><a href="index.html"><i class="bi bi-bar-chart-steps dropdown-icon"></i>DASHBOARD</a></div>
                     <div class="dropdown-option"><a href="budget.html"><i class="bi bi-cash-stack dropdown-icon"></i>TRANSACTIONS</a></div>
-                    <div class="dropdown-option"><button id="add-transaction-button-nav"><a href="#transaction-form-container"><i class="bi bi-currency-exchange dropdown-icon"></i>ADD TRANSACTION</a></button></div>
                 </div>
             </nav>
 
@@ -160,71 +158,6 @@
                     <!-- close list -->
                 </div>
             </div>
-
-            <!-- alert for deleting -->
-            <div id="delete-warning-container" class="col-12 col-lg-9">
-                <div id="delete-warning" class="alert alert-danger" role="alert">
-                    <div id="warning-header">WARNING</div>
-                    <div id="delete-paragraph">Are you sure you want to delete?</div>
-                    <div id="warning-buttons">
-                        <button id="delete-yes">Yes</button>
-                        <button id="delete-no">No</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- transaction list -->
-            <div id="transaction-form-container" class="col-12 col-lg-9">
-                <form id="transaction-form">
-                    <div id="data-id"></div>
-                    <div id="add-transaction-header">ADD NEW TRANSACTION</div> 
-                    <div>
-                        <div class="my-form-label">TYPE:</div>
-                        <select id="type-select" class="form-select form-select-sm" required>
-                            <option value="Expenditure">Expenditure</option>
-                            <option value="Income">Income</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <div class="my-form-label">CATEGORY:</div>
-                        <select id="category-select" class="form-select form-select-sm" required>
-                            <option value="Shopping">Shopping</option>
-                            <option value="Food">Food</option>
-                            <option value="Transport">Transport</option>
-                            <option value="Bill">Bill</option>
-                            <option value="Salary">Salary</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <div class="my-form-label">DATE:</div>
-                        <input type="date" id="date-form" class="form-control" required/>
-                    </div>
-
-                    <div>
-                        <div class="my-form-label">DESCRIPTION:</div>
-                        <textarea id="description-form" class="form-control" required></textarea>
-                    </div>
-
-                    <div>
-                        <div class="my-form-label">AMOUNT:</div>
-                        <input type="text" id="amount-form" class="form-control" required/>
-                    </div>
-                    <div id="submit">
-                        <button type="button" id="cancel-button">Cancel</button>
-                        <button type="button" id="update-button">Update</button>
-                        <button type="button" id="submit-button">Submit</button>
-                    </div>
-                    <div id="form-validation">
-                        <div id="validation-content" class="alert alert-warning" role="alert">
-                            <div id="validation-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
-                            <div id="validation-text">Please fill up all the fields</div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
         </div>
     </div>
 
