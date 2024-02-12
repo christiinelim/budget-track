@@ -25,11 +25,11 @@ async function main(){
     let data = await loadData();
 
     // extract previous month data
-    let extractPreviousMonthData = await extractData(data, getPreviousMonth(getCurrentMonth()));
+    let extractPreviousMonthData = await extractRelevantData(data, getPreviousMonth(getCurrentMonth()), "month", "descending");
     let previousMonthData = await loadDashboard(extractPreviousMonthData); 
 
     // extract current month data
-    let extractedData = await extractData(data, getCurrentMonth());
+    let extractedData = await extractRelevantData(data, getCurrentMonth(), "month", "descending");
     let dashboardData = await loadDashboard(extractedData);
 
     // calculate the percentage changes from previous month

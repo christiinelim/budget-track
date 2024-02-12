@@ -51,8 +51,9 @@ async function main(){
             };
 
             await createTransaction(data, newTransaction);
-            // await saveData(data);
-            await renderTransactionList(data);
+            await saveData(data);
+            let sortedData = await extractRelevantData(data, null, "date", "descending");
+            await renderTransactionList(sortedData);
             document.querySelector("#transaction-form-container").style.display = "none";
             document.querySelector("#transaction-form").reset();
         } else if (isNaN(Number(document.querySelector("#amount-form").value))) {
@@ -81,10 +82,15 @@ async function main(){
             const newDescription = document.querySelector("#description-form").value;
             const newAmount = document.querySelector("#amount-form").value;
             await updateTransaction(data, newType, newCategory, newDate, newDescription, newAmount);
-            // await saveData(data);
-            renderTransactionList(data);
+            await saveData(data);
+            let sortedData = await extractRelevantData(data, null, "date", "descending");
+            await renderTransactionList(sortedData);
             document.querySelector("#transaction-form-container").style.display = "none";
             document.querySelector("#transaction-form").reset();
+
+            // reset filter and sort options
+            document.querySelector("#filter-box-select").selectedIndex = 0;
+            document.querySelector("#sort-by-select").selectedIndex = 0;
         } else if (isNaN(Number(document.querySelector("#amount-form").value))) {
             document.querySelector("#validation-text").innerHTML = "Please enter a valid number for amount";
             document.querySelector("#form-validation").style.display = "flex";
@@ -108,11 +114,118 @@ async function main(){
     // delete warning yes button
     document.querySelector("#delete-yes").addEventListener("click", async function(){
         await deleteTransaction(data);
-        // await saveData(data);
+        document.querySelector("#filter-box-select").selectedIndex = 0;
+        document.querySelector("#sort-by-select").selectedIndex = 0;
+        await saveData(data);
         renderTransactionList(data);
         document.querySelector("#delete-warning").style.display = "none"; 
     })
 
+
+    // filter
+    document.querySelector("#filter-box-select").addEventListener("change", async function(){
+        if (document.querySelector("#filter-box-select").value == "show-all"){
+            // need the different scenarios
+            if (document.querySelector("#sort-by-select").value == "date-descending"){
+                let sortedData = await extractRelevantData(data, null, "date", "descending");
+                renderTransactionList(sortedData);
+            } else if (document.querySelector("#sort-by-select").value == "date-ascending"){
+                let sortedData = await extractRelevantData(data, null, "date", "ascending");
+                renderTransactionList(sortedData);
+            } else if (document.querySelector("#sort-by-select").value == "amount-descending"){
+                let sortedData = await extractRelevantData(data, null, "amount", "descending");
+                renderTransactionList(sortedData);
+            } else {
+                let sortedData = await extractRelevantData(data, null, "amount", "ascending");
+                renderTransactionList(sortedData);
+            }     
+        } else if (document.querySelector("#filter-box-select").value == "current-month"){
+            let extractedData = await extractRelevantData(data, getCurrentMonth(), "month", "descending");
+            if (document.querySelector("#sort-by-select").value == "date-descending"){
+                let sortedData = await extractRelevantData(extractedData, null, "date", "descending");
+                renderTransactionList(sortedData);
+            } else if (document.querySelector("#sort-by-select").value == "date-ascending"){
+                let sortedData = await extractRelevantData(extractedData, null, "date", "ascending");
+                renderTransactionList(sortedData);
+            } else if (document.querySelector("#sort-by-select").value == "amount-descending"){
+                let sortedData = await extractRelevantData(extractedData, null, "amount", "descending");
+                renderTransactionList(sortedData);
+            } else {
+                let sortedData = await extractRelevantData(extractedData, null, "amount", "ascending");
+                renderTransactionList(sortedData);
+            }  
+        } else {
+            let extractedData = await extractRelevantData(data, getPreviousMonth(getCurrentMonth()), "month", "descending");
+            if (document.querySelector("#sort-by-select").value == "date-descending"){
+                let sortedData = await extractRelevantData(extractedData, null, "date", "descending");
+                renderTransactionList(sortedData);
+            } else if (document.querySelector("#sort-by-select").value == "date-ascending"){
+                let sortedData = await extractRelevantData(extractedData, null, "date", "ascending");
+                renderTransactionList(sortedData);
+            } else if (document.querySelector("#sort-by-select").value == "amount-descending"){
+                let sortedData = await extractRelevantData(extractedData, null, "amount", "descending");
+                renderTransactionList(sortedData);
+            } else {
+                let sortedData = await extractRelevantData(extractedData, null, "amount", "ascending");
+                renderTransactionList(sortedData);
+            } 
+        }
+    })
+
+    // sort
+    document.querySelector("#sort-by-select").addEventListener("change", async function(){
+        if (document.querySelector("#sort-by-select").value == "date-descending") {
+            if (document.querySelector("#filter-box-select").value == "show-all"){
+                let sortedData = await extractRelevantData(data, null, "date", "descending");
+                renderTransactionList(sortedData)
+            } else if (document.querySelector("#filter-box-select").value == "current-month") {
+                let extractedData = await extractRelevantData(data, getCurrentMonth(), "month", "descending");
+                renderTransactionList(extractedData)
+            } else {
+                let extractedData = await extractRelevantData(data, getPreviousMonth(getCurrentMonth()), "month", "descending");
+                renderTransactionList(extractedData)
+            }
+        } else if (document.querySelector("#sort-by-select").value == "date-ascending") {
+            if (document.querySelector("#filter-box-select").value == "show-all"){
+                let sortedData = await extractRelevantData(data, null, "date", "ascending");
+                renderTransactionList(sortedData)
+            } else if (document.querySelector("#filter-box-select").value == "current-month") {
+                let extractedData = await extractRelevantData(data, getCurrentMonth(), "month", "descending");
+                let sortedData = await extractRelevantData(extractedData, null, "date", "ascending");
+                renderTransactionList(sortedData)
+            } else {
+                let extractedData = await extractRelevantData(data, getPreviousMonth(getCurrentMonth()), "month", "descending");
+                let sortedData = await extractRelevantData(extractedData, null, "date", "ascending");
+                renderTransactionList(sortedData)
+            }
+        } else if (document.querySelector("#sort-by-select").value == "amount-ascending"){
+            if (document.querySelector("#filter-box-select").value == "show-all"){
+                let sortedData = await extractRelevantData(data, null, "amount", "ascending");
+                renderTransactionList(sortedData)
+            } else if (document.querySelector("#filter-box-select").value == "current-month") {
+                let extractedData = await extractRelevantData(data, getCurrentMonth(), "month", "descending");
+                let sortedData = await extractRelevantData(extractedData, null, "amount", "ascending");
+                renderTransactionList(sortedData)
+            } else {
+                let extractedData = await extractRelevantData(data, getPreviousMonth(getCurrentMonth()), "month", "descending");
+                let sortedData = await extractRelevantData(extractedData, null, "amount", "ascending");
+                renderTransactionList(sortedData)
+            }
+        } else {
+            if (document.querySelector("#filter-box-select").value == "show-all"){
+                let sortedData = await extractRelevantData(data, null, "amount", "descending");
+                renderTransactionList(sortedData)
+            } else if (document.querySelector("#filter-box-select").value == "current-month") {
+                let extractedData = await extractRelevantData(data, getCurrentMonth(), "month", "descending");
+                let sortedData = await extractRelevantData(extractedData, null, "amount", "descending");
+                renderTransactionList(sortedData)
+            } else {
+                let extractedData = await extractRelevantData(data, getPreviousMonth(getCurrentMonth()), "month", "descending");
+                let sortedData = await extractRelevantData(extractedData, null, "amount", "descending");
+                renderTransactionList(sortedData)
+            }
+        }
+    })
 }
 
 // render transaction data

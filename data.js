@@ -1,31 +1,31 @@
 // JSON bin
-// const BIN_ID = "65c20ce4266cfc3fde867e5d";
-// const BASE_JSON_BIN_URL = "https://api.jsonbin.io/v3/b";
-// const MASTER_KEY = "$2a$10$LLQ1eADf.I2lO1q9VTvKSeHEEGrQ58G42eMJTdjJgEe2CkrMl1mMa";
-
-// async function loadData() {
-//     const response = await axios.get(`${BASE_JSON_BIN_URL}/${BIN_ID}/latest`);
-//     const data = response.data
-        // data.sort((b, a) => new Date(a.date) - new Date(b.date));
-        // return data
-// };
+const BIN_ID = "65c9c501dc74654018a39987";
+const BASE_JSON_BIN_URL = "https://api.jsonbin.io/v3/b";
+const MASTER_KEY = "$2a$10$LLQ1eADf.I2lO1q9VTvKSeHEEGrQ58G42eMJTdjJgEe2CkrMl1mMa";
 
 async function loadData() {
-    const response = await axios.get("data.json");
-    const data = response.data
+    const response = await axios.get(`${BASE_JSON_BIN_URL}/${BIN_ID}/latest`);
+    const data = response.data.record
     data.sort((b, a) => new Date(a.date) - new Date(b.date));
     return data
 };
 
-// auto save data
-// async function saveData(data) {
-//     const response = await axios.put(`${BASE_JSON_BIN_URL}/${BIN_ID}`, data, {
-//         'Content-Type': "application/json", 
-//         'X-Master-Key': MASTER_KEY,
-//     });
+// async function loadData() {
+//     const response = await axios.get("data.json");
+//     const data = response.data
+//     data.sort((b, a) => new Date(a.date) - new Date(b.date));
+//     return data
+// };
 
-//     return response.data.record
-// }
+// auto save data
+async function saveData(data) {
+    const response = await axios.put(`${BASE_JSON_BIN_URL}/${BIN_ID}`, data, {
+        'Content-Type': "application/json", 
+        'X-Master-Key': MASTER_KEY,
+    });
+
+    return response.data.record
+}
 
 
 function createTransaction(data, newTransaction){
@@ -82,14 +82,35 @@ function getCurrentMonth(){
     return currentMonth
 }
 
-function extractData(data, month){
-    const extractedData = [];
-    for (let element of data){
-        if (element.date.slice(0,7) == month){
-            extractedData.push(element)
+function extractRelevantData(data, comparator, type, direction){
+    let extractedData = [];
+    if (type == "month"){
+        for (let element of data){
+            if (element.date.slice(0,7) == comparator){
+                extractedData.push(element)
+            }
         }
+        return extractedData
+    } else if (type == "amount"){
+        extractedData = data;
+        // check direction
+        if (direction == "descending"){
+            extractedData.sort((b, a) => a.amount - b.amount);
+        } else {
+            extractedData.sort((a, b) => a.amount - b.amount);
+        }
+        return extractedData
+    } else { // by date
+        extractedData = data;
+        // check direction
+        if (direction == "descending"){
+            extractedData.sort((b, a) => new Date(a.date) - new Date(b.date));
+        } else {
+            console.log("hello")
+            extractedData.sort((a, b) => new Date(a.date) - new Date(b.date));
+        }
+        return extractedData
     }
-    return extractedData
 }
 
 async function loadDashboard(data){

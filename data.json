@@ -110,5 +110,21 @@
         "date": "2024-01-24",
         "description": "Part time pay",
         "amount": 560.40
+    },
+    {
+        "id": 6254,
+        "type": "Expenditure",
+        "category": "Transport",
+        "date": "2024-02-05",
+        "description": "Taxi to work",
+        "amount": 34.60
+    },
+    {
+        "id": 3261,
+        "type": "Expenditure",
+        "category": "Transport",
+        "date": "2024-02-02",
+        "description": "MRT to work",
+        "amount": 2.95
     }
 ]

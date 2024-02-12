@@ -45,9 +45,36 @@
             <!-- render list content -->
             <div id="transaction" class="col-12 col-lg-9">
                 <div id="transaction-bg">
-                    <div id="add-transaction">
-                        <div id="add-transaction-box">
-                            <button id="add-transaction-button"><a href="#transaction-form-container"><i id="add-transaction-icon" class="bi bi-currency-exchange"></i>Add Transaction</a></button>
+                    <div id="filter-add-transaction-wrapper">
+                        <div id="sort-and-filter">
+                            <div class="filter-wrapper">
+                                <div id="filter-box" class="my-filter-label">Filter:</div>
+                                <div class="my-filter-box">
+                                    <select id="filter-box-select" class="form-select form-select-sm my-filter-box">
+                                        <option value="show-all">Show All</option>
+                                        <option value="current-month">Current Month</option>
+                                        <option value="previous-month">Previous Month</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="filter-wrapper">
+                                <div id="sort-box" class="my-filter-label">Sort By:</div>
+                                <div class="my-filter-box">
+                                    <select id="sort-by-select" class="form-select form-select-sm my-filter-box">
+                                        <option value="date-descending">Date (Descending)</option>
+                                        <option value="date-ascending">Date (Ascending)</option>
+                                        <option value="amount-descending">Amount (Descending)</option>
+                                        <option value="amount-ascending">Amount (Ascending)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="add-transaction">
+                            <div id="add-transaction-box">
+                                <button id="add-transaction-button"><a href="#transaction-form-container"><i id="add-transaction-icon" class="bi bi-currency-exchange"></i>Add Transaction</a></button>
+                            </div>
                         </div>
                     </div>
                     <div id="transaction-list">
@@ -82,7 +109,7 @@
                     <div id="add-transaction-header">ADD NEW TRANSACTION</div> 
                     <div>
                         <div class="my-form-label">TYPE:</div>
-                        <select id="type-select" class="form-select form-select-sm" required>
+                        <select id="type-select" class="form-select form-select-sm">
                             <option value="Expenditure">Expenditure</option>
                             <option value="Income">Income</option>
                         </select>
@@ -90,7 +117,7 @@
 
                     <div>
                         <div class="my-form-label">CATEGORY:</div>
-                        <select id="category-select" class="form-select form-select-sm" required>
+                        <select id="category-select" class="form-select form-select-sm">
                             <option value="Shopping">Shopping</option>
                             <option value="Food">Food</option>
                             <option value="Transport">Transport</option>
@@ -101,17 +128,17 @@
 
                     <div>
                         <div class="my-form-label">DATE:</div>
-                        <input type="date" id="date-form" class="form-control" required/>
+                        <input type="date" id="date-form" class="form-control"/>
                     </div>
 
                     <div>
                         <div class="my-form-label">DESCRIPTION:</div>
-                        <textarea id="description-form" class="form-control" required></textarea>
+                        <textarea id="description-form" class="form-control"></textarea>
                     </div>
 
                     <div>
                         <div class="my-form-label">AMOUNT:</div>
-                        <input type="text" id="amount-form" class="form-control" required/>
+                        <input type="text" id="amount-form" class="form-control"/>
                     </div>
                     <div id="submit">
                         <button type="button" id="cancel-button">Cancel</button>

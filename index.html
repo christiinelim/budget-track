@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- bootstrap icons css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -48,7 +50,7 @@
                     <div id="breakdown" class="row">
                         <div id="balance" class="col-12 col-md-4">
                             <div id="balance-title">Current Balance</div>
-                            <div id="balance-amount">$1245</div>
+                            <div id="balance-amount"></div>
                             <div id="balance-compare">
                                 <div id="balance-compare-icon"></div>
                                 <div id="balance-compare-result"></div>
@@ -57,7 +59,7 @@
                         <div id="breakdown-group" class="row col-12 col-md-8">
                             <div id="expenditure" class="col-6">
                                 <div id="expenditure-title">Total Expenditure</div>
-                                <div id="expenditure-amount">$450</div>
+                                <div id="expenditure-amount"></div>
                                 <div id="expenditure-compare">
                                     <div id="expenditure-compare-icon"></div>
                                     <div id="expenditure-compare-result"></div>
@@ -65,20 +67,20 @@
                             </div>
                             <div id="income" class="col-6">
                                 <div id="income-title">Total Income</div>
-                                <div id="income-amount">$5000</div>
+                                <div id="income-amount"></div>
                                 <div id="income-compare">
                                     <div id="income-compare-icon"><i class="bi bi-arrow-up-right-circle-fill"></i></div>
-                                    <div id="income-compare-result">32%</div>
+                                    <div id="income-compare-result"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div style="height:50vh">
+                    <div class="chart">
                         <div id="balance-bar-chart"></div>
                     </div>
 
-                    <div style="height:50vh">
+                    <div class="chart">
                         <div id="spendings-line-chart"></div>
                     </div>
 
